@@ -1,0 +1,222 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: #000;
+}
+
+#stars-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background: #000;
+}
+
+/* Frosted Glass Card Styles */
+.card {
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  max-width: 70vw;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 40px;
+  box-shadow:
+    0 2px 32px 0 rgba(255, 186, 112, 0.18),
+    0 1.5px 32px rgba(255, 121, 168, 0.11),
+    0 0 0 8px rgba(255, 233, 236, 0.23);
+  border: 1.5px solid rgba(255,255,255,0.22);
+  padding: 44px 48px 32px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: card-pop 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+  position: relative;
+  overflow: visible;
+  /* Frosted glass effect */
+  backdrop-filter: blur(22px) saturate(145%);
+  -webkit-backdrop-filter: blur(22px) saturate(145%);
+}
+
+.card:before {
+  content: "";
+  position: absolute;
+  top: -10px; left: -10px; right: -10px; bottom: -10px;
+  border-radius: 48px;
+  background: linear-gradient(120deg, #ffb34777, #ff758c77, #8fd3f477, #a1ffce77, #f9d42377 90%);
+  filter: blur(24px);
+  z-index: -1;
+  opacity: 0.45;
+  animation: border-glow 3s linear infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes border-glow {
+  0% { filter: blur(18px) brightness(1); opacity: 0.32; }
+  100% { filter: blur(24px) brightness(1.08); opacity: 0.6; }
+}
+
+@keyframes card-pop {
+  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+  70% { transform: translate(-50%, -50%) scale(1.03); opacity: 1;}
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Birthday Header - Mix of Dark and Light (more dark for visibility), No Neon */
+.card-header h1 {
+  font-size: 2.8rem;
+  /* Mix of dark and light for visibility, with more dark colors for better contrast */
+  background: linear-gradient(
+    90deg,
+   #ff7eb3, #ff758c, #ffce7b, #8fd3f4, #a1ffce, #f9d423
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin: 0 0 18px 0;
+  font-weight: 900;
+  letter-spacing: 2px;
+  position: relative;
+  /* Subtle shadow for readability, not neon */
+  text-shadow: 0 1px 3px rgba(40,40,40,0.18);
+  animation: rainbow-text 6s linear infinite alternate;
+}
+
+.card-header h1::before {
+  content: "";
+  position: absolute;
+  left: -12px; right: -12px; top: 50%; height: 3em;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.10);
+  filter: blur(6px);
+  border-radius: 14px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes rainbow-text {
+  0% { filter: hue-rotate(0deg);}
+  100% { filter: hue-rotate(15deg);}
+}
+
+.card-body {
+  margin: 18px 0 10px 0;
+  text-align: center;
+}
+
+.card-body p {
+  font-size: 1.33rem;
+  color: #b05eae;
+  margin-bottom: 28px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 10px #ffe7fa8c;
+  background: rgba(255,255,255,0.65);
+  border-radius: 16px;
+  padding: 10px 16px;
+}
+
+.cake {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto 20px auto;
+  filter: drop-shadow(0 2px 16px #ffe06688) drop-shadow(0 0px 8px #ffb34780);
+}
+
+.cake-body {
+  width: 70px;
+  height: 48px;
+  background: linear-gradient(180deg, #ffb347 80%, #ff758c 100%);
+  border-radius: 0 0 28px 28px;
+  box-shadow: 0 2px 8px rgba(255, 186, 112, 0.20);
+  position: relative;
+  z-index: 1;
+}
+
+.cake-base {
+  width: 90px;
+  height: 18px;
+  background: #fff0e1;
+  border-radius: 0 0 24px 24px;
+  margin-top: -8px;
+  box-shadow: 0 1px 5px rgba(255, 186, 112, 0.17);
+}
+
+.candle {
+  width: 8px;
+  height: 30px;
+  background: repeating-linear-gradient(
+    135deg,
+    #fff 0px, #fff 4px,
+    #ff758c 4px, #ff758c 8px
+  );
+  border-radius: 4px;
+  margin-bottom: -4px;
+  position: relative;
+  z-index: 2;
+}
+.candle:after {
+  content: "";
+  position: absolute;
+  top: -12px; left: 50%;
+  transform: translateX(-50%);
+  width: 14px; height: 14px;
+  background: radial-gradient(circle, #ffe066 45%, #ffbe0b 80%, transparent 100%);
+  border-radius: 50%;
+  opacity: 0.85;
+  animation: flame 1.2s infinite alternate;
+  z-index: 3;
+}
+@keyframes flame {
+  0% { transform: translateX(-50%) scale(0.9) rotate(-5deg);}
+  100% { transform: translateX(-50%) scale(1.2) rotate(5deg);}
+}
+
+.card-footer {
+  margin-top: 6px;
+  color: #ff758c;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-align: center;
+  opacity: 0.95;
+  text-shadow: 0 1px 12px #fff0e1, 0 1px 6px #ffd1e3;
+  background: rgba(255,255,255,0.55);
+  padding: 8px 22px;
+  border-radius: 30px;
+  box-shadow: 0 1px 8px #ffd1e3a1;
+}
+
+/* Confetti Sparkles */
+.card::after {
+  content: "";
+  position: absolute;
+  top: 15px; left: 30px; right: 30px; height: 0;
+  z-index: 6;
+  pointer-events: none;
+  background: none;
+  box-shadow:
+    0 0 #fff, 70px 12px #ffbe0b, 140px 0 #ff758c, 210px 18px #a1ffce, 280px 10px #8fd3f4,
+    40px 32px #ffb347, 120px 36px #ffbe0b, 200px 25px #f9d423, 320px 26px #b388ff;
+  width: 2px; height: 2px;
+  opacity: 0.84;
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 20px 4vw 12px 4vw;
+    width: 98vw;
+  }
+  .card-header h1 {
+    font-size: 2rem;
+  }
+}
